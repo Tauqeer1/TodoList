@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="mainApp">
+
+   <div ng-controller="myCtrl">
+
+       <md-input-container>
+           <label>Add todo items</label>
+           <input type="text" ng-model="todoitem">
+       </md-input-container>
+       <md-button class="md-primary md-raised" ng-click="AddToTodoList(); ">Add Item</md-button>
+       <ul>
+           <div ng-repeat="i in itemsArray">
+               <md-checkbox ng-model="i.delete" ng-change="RemainingItemInList()">{{i.item}}</md-checkbox>
+           </div>
+           {{count || 0}} out of {{itemsArray.length}}
+       </ul>
+       <md-button class="md-primary md-raised">Archive</md-button>
+   </div>
+
+
+
+
+</body>
+</html>
