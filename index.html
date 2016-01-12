@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Todo List</title>
 
+    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css"/>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 
     <script src="bower_components/angular/angular.js"></script>
@@ -11,30 +12,47 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+
+
+    <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>
+
     <script src="app.js"></script>
 </head>
-<body ng-app="mainApp">
+<body ng-app="mainApp" ng-controller="myCtrl" layout="column">
 
-   <div ng-controller="myCtrl">
+<div>
+    <md-toolbar layout="row" layout-align="center">
+        <h2>To do list</h2>
+    </md-toolbar>
 
-       <md-input-container>
-           <label>Add todo items</label>
-           <input type="text" ng-model="todoitem">
-       </md-input-container>
-       <md-button class="md-primary md-raised" ng-click="AddToTodoList(); ">Add Item</md-button>
-       <ul>
-           <div ng-repeat="i in itemsArray">
-               <md-checkbox ng-model="i.delete" ng-change="RemainingItemInList()">{{i.item}}</md-checkbox>
-           </div>
-           {{count || 0}} out of {{itemsArray.length}}
-       </ul>
-       <md-button class="md-primary md-raised" ng-click="DeleteSelectedItems();">
-           Archive
-       </md-button>
-   </div>
+    <div layout="row" layout-align="center">
+        <md-input-container flex="50">
+            <label>Add todo items</label>
+            <input type="text" ng-model="todoitem">
+        </md-input-container>
+        <md-button layout="row" layout-align="center center" class="md-fab " aria-label="Add Item"
+                   ng-click="AddItemTodoList();">
+            <ng-md-icon icon="add"></ng-md-icon>
+        </md-button>
+    </div>
+
+    <div layout="row" layout-align="center center">
+        <!--<div flex="55"></div>-->
+        <div flex-offset="50">
+            {{count || 0}} of {{itemsArray.length}}
+            [<a href="" ng-click="DeleteSelectedItems();">Archive</a>]
+        </div>
+    </div>
+    <ul flex-offset="20" flex="50">
+        <div ng-repeat="i in itemsArray">
+            <md-checkbox ng-model="i.checked"
+                         ng-change="RemainingItemInList()">
+                {{i.item}}
+            </md-checkbox>
+        </div>
+    </ul>
 
 
-
-
+</div>
 </body>
 </html>
